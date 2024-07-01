@@ -1,0 +1,12 @@
+//UNTUK MENGAKSES DIRECTORY ROOT
+$ whoami
+$ sudo su
+$ passwd
+$ vi /etc/ssh/sshd_config
+- Pada file tersebut kita cari parameter PermitRootLogin
+- Lalu lakukan perubahan parameternya sehingga menjadi :
+- PermitRootLogin yes
+
+$ :wq
+$ systemctl restart sshd
+$ systemctl status sshd
