@@ -10,6 +10,8 @@ sudo apt install nginx
 sudo systemctl status nginx
 sudo systemctl start nginx
 sudo systemctl enable nginx
+
+#jangan dulu
 sudo service apache2 stop
 
 sudo apt-get purge apache2
@@ -40,6 +42,7 @@ FLUSH PRIVILEGES;
 exit;
 mysql -u root -p cxfteamsx < /var/www/cxfteams.sql
 
+#pasang ini
 # PHP
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
@@ -54,16 +57,12 @@ composer --version
 
 # Casino
 cd /var/www
-mkdir -p casino
-## Upload casino.zip public.zip
-cd casino
-sudo unzip casino.zip
-cd public
-sudo unzip public.zip
-cd
+sudo unzip casinol.zip
 sudo composer install
-sudo chown -R www-data:www-data /var/www/casino
+sudo chown -R www-data:www-data /var/www/casinol
 sudo chmod -R 755 /var/www/storage
+
+#jangan dulu
 
 sudo nano /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf
 # Make your conf
