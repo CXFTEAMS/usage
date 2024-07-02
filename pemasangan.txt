@@ -1,0 +1,148 @@
+utorial Install Casino Laravel 9 on Ubuntu 22.04
+
+# SSH
+sudo apt update
+sudo apt upgrade
+sudo apt install unzip
+
+# Nginx
+sudo apt install nginx
+sudo systemctl status nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo service apache2 stop
+
+sudo apt-get purge apache2
+
+sudo apt-get update
+
+sudo apt-get install nginx
+
+sudo service nginx restart
+
+
+#pasang domain nginx
+cd /etc/nginx/
+ls 
+ls sites-available
+:wq
+vim /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf
+# MariaDB
+sudo apt-get install mariadb-server
+sudo mysql_secure_installation
+sudo mysql
+
+# Database
+CREATE DATABASE cxfteamsx;
+CREATE USER 'cxfteamsx'@'localhost' IDENTIFIED BY 'cxfteams15x.';
+GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'localhost';
+FLUSH PRIVILEGES;
+exit;
+mysql -u root -p cxfteamsx < /var/www/cxfteams.sql
+
+# PHP
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php8.1 php8.1-fpm php8.1-cli php8.1-curl php8.1-zip php8.1-mysql php8.1-mbstring php8.1-xml php8.1-bcmath
+
+# Composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+php -r "unlink('composer-setup.php');"
+composer --version
+
+# Casino
+cd /var/www
+mkdir -p casino
+## Upload casino.zip public.zip
+cd casino
+sudo unzip casino.zip
+cd public
+sudo unzip public.zip
+cd
+sudo composer install
+sudo chown -R www-data:www-data /var/www/casino
+sudo chmod -R 755 /var/www/storage
+
+sudo nano /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf
+# Make your conf
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name cxfteams-games-cloning-slots-gambling.top www.cxfteams-games-cloning-slots-gambling.top;
+
+    root /var/www/public;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+sudo mkdir /var/cache/nginx
+sudo chown -R www-data:www-data /var/cache/nginx
+
+
+sudo ln -s /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf /etc/nginx/sites-enabled/
+
+sudo nginx -t
+sudo systemctl restart nginx
+
+# Nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+source ~/.bashrc
+nvm list-remote
+nvm install v18.14.2
+
+# PTWebSocket
+cd /var/www/casino/PTWebSocket
+# Edit your PTWebSocket ssl folder with your crt.crt and key.key from cloudflare and your domain in public/*.json
+npm install
+pm2 start Arcade.js --watch
+pm2 start Server.js --watch
+pm2 start Slots.js --watch
+pm2 save
+pm2 startup
+USE nama_database;
+ALTER TABLE nama_tabel ENGINE=InnoDB;
+
+sudo systemctl restart mariadb
+
+#monitoring vps
+iftop
+htop
+
+#cek kapasitas database
+sudo mysql
+
+#size database
+SELECT table_schema AS "Database", 
+       SUM(data_length + index_length) / 1024 / 1024 AS "Size (MB)" 
+FROM information_schema.tables 
+GROUP BY table_schema;
+
+#size table database
+SELECT table_name AS "Table",
+       ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.tables
+WHERE table_schema = 'cxfteamsx';
+
+#Cache Server Agar Sedikit Mempercepat
+sudo apt-get install redis-server
+sudo apt-get install memcached
+
+#Atur Cache Sesuai Keinginan
+/etc/redis/redis.conf
+/etc/memcached.conf
