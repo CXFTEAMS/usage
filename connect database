@@ -1,0 +1,32 @@
+Buka file konfigurasi MySQL atau MariaDB di server VPS. 
+Lokasinya mungkin berbeda-beda tergantung pada distribusi Linux yang digunakan. 
+Coba periksa di /etc/mysql/mysql.conf.d/mysqld.cnf atau /etc/mysql/mariadb.conf.d/50-server.cnf.
+Temukan dan ubah baris bind-address menjadi 0.0.0.0 atau sesuaikan dengan IP publik server VPS Anda:
+
+> bind-address = 0.0.0.0
+
+Simpan perubahan tersebut dan restart layanan MySQL/MariaDB:
+
+> sudo systemctl restart mysql
+
+Login ke MySQL atau MariaDB:
+Gunakan perintah berikut di terminal untuk masuk ke CLI MySQL atau MariaDB di server VPS Anda:
+
+> mysql -u root -p
+
+Ubah Host Pengguna Menjadi %:
+Ubah host dari pengguna 'cxfteamsx'@'localhost' agar dapat mengakses dari semua host:
+
+> GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'%';
+
+Tetapkan Perubahan Izin:
+
+> FLUSH PRIVILEGES;
+
+> sudo apt update
+> sudo apt install ufw
+> sudo ufw enable
+> sudo ufw allow 3306/tcp
+
+
+
