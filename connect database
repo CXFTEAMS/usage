@@ -23,11 +23,6 @@ GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'%';
 FLUSH PRIVILEGES;
 exit;
 
-
-Tetapkan Perubahan Izin:
-
-> FLUSH PRIVILEGES;
-
 > sudo apt update
 > sudo apt install ufw
 > sudo ufw enable
