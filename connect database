@@ -18,8 +18,8 @@ Ubah Host Pengguna Menjadi %:
 Ubah host dari pengguna 'cxfteamsx'@'localhost' agar dapat mengakses dari semua host:
 
 CREATE DATABASE cxfteamsx;
-CREATE USER 'cxfteamsx'@'localhost' IDENTIFIED BY 'cxfteams15x.';
-GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'localhost';
+CREATE USER 'cxfteamsx'@'%' IDENTIFIED BY 'cxfteams15x.';
+GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'%';
 FLUSH PRIVILEGES;
 exit;
 
