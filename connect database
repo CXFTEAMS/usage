@@ -17,7 +17,12 @@ Gunakan perintah berikut di terminal untuk masuk ke CLI MySQL atau MariaDB di se
 Ubah Host Pengguna Menjadi %:
 Ubah host dari pengguna 'cxfteamsx'@'localhost' agar dapat mengakses dari semua host:
 
-> GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'%';
+> CREATE DATABASE cxfteamsx;
+> CREATE USER 'cxfteamsx'@'localhost' IDENTIFIED BY 'cxfteams15x.';
+> GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'localhost';
+> FLUSH PRIVILEGES;
+> exit;
+
 
 Tetapkan Perubahan Izin:
 
