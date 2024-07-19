@@ -1,3 +1,7 @@
+sudo apt-get install mariadb-server
+sudo mysql_secure_installation
+sudo mysql
+
 Buka file konfigurasi MySQL atau MariaDB di server VPS. 
 Lokasinya mungkin berbeda-beda tergantung pada distribusi Linux yang digunakan. 
 Coba periksa di /etc/mysql/mysql.conf.d/mysqld.cnf atau /etc/mysql/mariadb.conf.d/50-server.cnf.
