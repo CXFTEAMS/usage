@@ -27,6 +27,8 @@ GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'%';
 FLUSH PRIVILEGES;
 exit;
 
+mysql -u root -p cxfteamsx < /var/www/cxfteams.sql
+
 sudo apt update
 sudo apt install ufw
 sudo ufw enable
