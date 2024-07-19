@@ -11,36 +11,10 @@ sudo systemctl status nginx
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-#jangan dulu
-sudo service apache2 stop
-
-sudo apt-get purge apache2
-
-sudo apt-get update
-
-sudo apt-get install nginx
-
-sudo service nginx restart
-
-
 #pasang domain nginx
-cd /etc/nginx/
-ls 
-ls sites-available
-:wq
-vim /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf
-# MariaDB
-sudo apt-get install mariadb-server
-sudo mysql_secure_installation
-sudo mysql
 
-# Database
-CREATE DATABASE cxfteamsx;
-CREATE USER 'cxfteamsx'@'localhost' IDENTIFIED BY 'cxfteams15x.';
-GRANT ALL PRIVILEGES ON cxfteamsx.* TO 'cxfteamsx'@'localhost';
-FLUSH PRIVILEGES;
-exit;
-mysql -u root -p cxfteamsx < /var/www/cxfteams.sql
+vim /etc/nginx/sites-available/namadomain.com
+# MariaDB
 
 #pasang ini
 # PHP
@@ -59,18 +33,17 @@ composer --version
 cd /var/www
 sudo unzip casinol.zip
 sudo composer install
-sudo chown -R www-data:www-data /var/www/casinol
+sudo chown -R www-data:www-data /var/www
 sudo chmod -R 755 /var/www/storage
 
 #jangan dulu
 
-sudo nano /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf
 # Make your conf
 server {
     listen 80;
     listen [::]:80;
 
-    server_name cxfteams-games-cloning-slots-gambling.top www.cxfteams-games-cloning-slots-gambling.top;
+    server_name domain.com www.domain.com;
 
     root /var/www/public;
     index index.php;
@@ -89,14 +62,13 @@ server {
     }
 }
 
-sudo mkdir /var/cache/nginx
-sudo chown -R www-data:www-data /var/cache/nginx
-
-
-sudo ln -s /etc/nginx/sites-available/cxfteams-games-cloning-slots-gambling.top.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/domain.com /etc/nginx/sites-enabled/
 
 sudo nginx -t
 sudo systemctl restart nginx
+
+sudo mkdir /var/cache/nginx
+sudo chown -R www-data:www-data /var/cache/nginx
 
 # Nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
